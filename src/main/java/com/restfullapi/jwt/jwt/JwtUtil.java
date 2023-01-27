@@ -2,7 +2,6 @@ package com.restfullapi.jwt.jwt;
 
 import java.util.Date;
 
-import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.restfullapi.jwt.models.userPrincipal;
 import com.restfullapi.jwt.services.myCustomUserDetails;
 
 import io.jsonwebtoken.Claims;
@@ -28,33 +26,20 @@ import io.jsonwebtoken.UnsupportedJwtException;
 public class JwtUtil {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
 
-    // @Value("${jwt.secret}")
-    private String secret = "secret";
+    @Value("${jwt.secret}")
+    private String secret;
 
-    // @Value("${jwt.expiration}")
-    private long expirationMs = 60 * 60 * 1000;
+    @Value("${jwt.expirationMs}")
+    private long expirationMs;
 
-    private Jws<Claims> getClaimsFromToken(String token) {
-
-        try {
-            return Jwts.parser()
-                    .setSigningKey(secret)
-                    .parseClaimsJws(token);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public String generateToken(Authentication authentication) {
-        myCustomUserDetails userDetails = (myCustomUserDetails) ((Authentication) authentication).getPrincipal();
-
+    public String generateJwtToken(Authentication authentication) {
+        myCustomUserDetails userPrincipal = (myCustomUserDetails) authentication.getPrincipal();
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + expirationMs))
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
-
     }
 
     public String getUsernameFormJwtToken(String token) {

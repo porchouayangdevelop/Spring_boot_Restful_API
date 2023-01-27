@@ -3,7 +3,6 @@ package com.restfullapi.jwt.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -40,7 +39,7 @@ public class authController {
                                 new UsernamePasswordAuthenticationToken(data.getUsername(), data.getPassword()));
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                String jwt = jwtUtil.generateToken(authentication);
+                String jwt = jwtUtil.generateJwtToken(authentication);
                 myCustomUserDetails = authentication.getPrincipal() instanceof myCustomUserDetails
                                 ? (myCustomUserDetails) authentication.getPrincipal()
                                 : null;

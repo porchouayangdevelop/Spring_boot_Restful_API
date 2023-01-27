@@ -51,15 +51,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/products/**").permitAll()
                 .anyRequest().authenticated();
 
-        // http.csrf().disable();
-        // http.authorizeRequests()
-        // .anyRequest().permitAll()
-        // .antMatchers(HttpMethod.POST, "/users/register").hasAnyAuthority("ADMIN")
-        // .antMatchers(HttpMethod.GET, "/users/all").hasAnyAuthority("ADMIN", "USER")
-        // .antMatchers(HttpMethod.POST, "/users/delete").hasAnyAuthority("ADMIN",
-        // "USER")
-        // .anyRequest().authenticated()
-        // .and().formLogin().and().httpBasic();
         http.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 

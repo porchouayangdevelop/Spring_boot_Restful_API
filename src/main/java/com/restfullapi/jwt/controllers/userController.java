@@ -20,14 +20,14 @@ public class userController {
     userService userService;
 
     @GetMapping("/all")
-    // @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<User>> findAllUsers() {
 
         return ResponseEntity.ok().body(userService.findAll());
     }
 
     @GetMapping("/{id}")
-    // @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<User> findUserById(@PathVariable("id") Long user_id) {
 
         return ResponseEntity.ok(userService.findByEntity(user_id)).getBody();
@@ -35,7 +35,7 @@ public class userController {
     }
 
     @PostMapping("/register")
-    // @PreAuthorize("Authoriztion('ADMIN')")
+    // @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<String> createUser(@RequestBody User user) {
         userService.createUser(user);
         return new ResponseEntity<>("user register successfully", HttpStatus.CREATED);
