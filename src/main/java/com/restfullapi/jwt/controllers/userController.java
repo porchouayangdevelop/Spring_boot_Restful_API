@@ -27,7 +27,7 @@ public class userController {
     }
 
     @GetMapping("/{id}")
-    // @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<User> findUserById(@PathVariable("id") Long user_id) {
 
         return ResponseEntity.ok(userService.findByEntity(user_id)).getBody();
@@ -36,13 +36,12 @@ public class userController {
 
     @PostMapping("/register")
     // @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<String> createUser(@RequestBody User user) {
-        userService.createUser(user);
-        return new ResponseEntity<>("user register successfully", HttpStatus.CREATED);
-
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        return ResponseEntity.ok(userService.createUser(user)).getBody();
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable("id") Long user_id) {
 
         userService.updateUser(user, user_id);
@@ -51,6 +50,7 @@ public class userController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<User> deleteUser(@PathVariable("id") Long user_id) {
         userService.deleteUser(user_id);
         return new ResponseEntity<>(HttpStatus.OK);
