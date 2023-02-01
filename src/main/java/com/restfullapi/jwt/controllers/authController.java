@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.restfullapi.jwt.dto.JwtResponse;
 import com.restfullapi.jwt.dto.loginRequest;
 import com.restfullapi.jwt.jwt.JwtUtil;
-import com.restfullapi.jwt.services.myCustomUserDetails;
+import com.restfullapi.jwt.services.users.myCustomUserDetails;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

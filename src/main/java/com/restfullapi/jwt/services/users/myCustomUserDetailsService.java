@@ -1,4 +1,4 @@
-package com.restfullapi.jwt.services;
+package com.restfullapi.jwt.services.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

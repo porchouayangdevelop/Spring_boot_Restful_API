@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.restfullapi.jwt.services.myCustomUserDetailsService;
+import com.restfullapi.jwt.services.users.myCustomUserDetailsService;
 
 public class JwtTokenFilter extends OncePerRequestFilter {
 

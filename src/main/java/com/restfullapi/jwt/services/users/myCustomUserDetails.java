@@ -1,4 +1,4 @@
-package com.restfullapi.jwt.services;
+package com.restfullapi.jwt.services.users;
 
 import java.util.ArrayList;
 import java.util.Collection;

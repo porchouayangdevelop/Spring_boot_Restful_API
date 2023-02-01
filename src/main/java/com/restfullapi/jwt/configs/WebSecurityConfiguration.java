@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.restfullapi.jwt.jwt.JwtEntryPoint;
 import com.restfullapi.jwt.jwt.JwtTokenFilter;
-import com.restfullapi.jwt.services.myCustomUserDetailsService;
+import com.restfullapi.jwt.services.users.myCustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity

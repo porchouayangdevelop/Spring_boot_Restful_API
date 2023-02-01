@@ -9,7 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.restfullapi.jwt.models.User;
-import com.restfullapi.jwt.services.userService;
+import com.restfullapi.jwt.services.users.userService;
 
 @RestController
 @RequestMapping(path = "/users")

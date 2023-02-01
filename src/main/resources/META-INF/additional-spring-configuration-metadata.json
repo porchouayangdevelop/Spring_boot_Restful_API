@@ -4,6 +4,36 @@
             "name": "management.security.enabled",
             "type": "java.lang.String",
             "description": "A description for 'management.security.enabled'"
+        },
+        {
+            "name": "jwt.secret",
+            "type": "java.lang.String",
+            "description": "A description for 'jwt.secret'"
+        },
+        {
+            "name": "baseUrl",
+            "type": "java.lang.String",
+            "description": "A description for 'baseUrl'"
+        },
+        {
+            "name": "jwt.expirationMs",
+            "type": "java.lang.String",
+            "description": "A description for 'jwt.expirationMs'"
+        },
+        {
+            "name": "mobBalanceInquiryPath",
+            "type": "java.lang.String",
+            "description": "A description for 'mobBalanceInquiryPath'"
+        },
+        {
+            "name": "mobReversalTransactionPath",
+            "type": "java.lang.String",
+            "description": "A description for 'mobReversalTransactionPath'"
+        },
+        {
+            "name": "mobMiniStatementPath",
+            "type": "java.lang.String",
+            "description": "A description for 'mobMiniStatementPath'"
         }
     ]
 }
