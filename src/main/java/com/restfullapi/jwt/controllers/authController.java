@@ -48,7 +48,8 @@ public class authController {
                                 .stream().map(item -> item.getAuthority())
                                 .collect(Collectors.toList());
 
-                return ResponseEntity.ok(new JwtResponse(jwt, myCustomUserDetails.getUsername(), roles));
+                return ResponseEntity.ok(
+                                new JwtResponse(jwt, myCustomUserDetails.getUsername(), roles, "login successfully"));
 
         }
 
