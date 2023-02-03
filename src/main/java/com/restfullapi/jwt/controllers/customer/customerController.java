@@ -42,9 +42,7 @@ public class customerController {
         String msg = "";
         try {
             service.storeCustomer(id, firstName, lastName, occupation, phone, file);
-            msg = "create user successfully" + file.getOriginalFilename() + "\n" + file.getContentType() + "\n"
-                    + file.getSize();
-
+            msg = "create user successfully";
             return ResponseEntity.status(HttpStatus.OK).body(new responseMsg(msg));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new responseMsg(e));

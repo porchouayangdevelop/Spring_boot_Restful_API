@@ -42,10 +42,4 @@ public class customer {
     @Lob
     private byte[] image;
 
-    public void addAttribute(String string, String base64Encoded) {
-    }
-
-    public void addAttribute(String string, ArrayList<customer> content2) {
-    }
-
 }
