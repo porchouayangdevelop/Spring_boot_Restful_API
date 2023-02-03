@@ -1,4 +1,4 @@
-package com.restfullapi.jwt.controllers;
+package com.restfullapi.jwt.controllers.auth;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,17 +1,20 @@
 package com.restfullapi.jwt.controllers.uploadImg;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,7 +33,8 @@ public class uploadController {
     @Autowired
     private fileStorage storage;
 
-    @PostMapping("/img")
+    @RequestMapping(value = "/img", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+
     ResponseEntity<responseMsg> uploadImg(
             @RequestParam("id") String id,
             @RequestParam("BANK_CODE") String BANK_CODE,
@@ -43,7 +47,12 @@ public class uploadController {
         String msg = "";
         try {
             storage.store(id, BANK_CODE, CIF, STATUS, REG_BRN, REG_DATE, REG_TELR, file);
-            msg = "Upload file successfully " + file.getOriginalFilename();
+            File path = new File("C:\\Users\\DELL\\Desktop\\uploads\\" + file.getOriginalFilename());
+            path.createNewFile();
+            FileOutputStream output = new FileOutputStream(path);
+            output.write(file.getBytes());
+            output.close();
+            msg = "Upload file successfully " + file.getOriginalFilename() + "\n" + "data:" + path;
             return ResponseEntity.status(HttpStatus.OK).body(new responseMsg(msg));
         } catch (Exception e) {
             msg = "Could not upload the file: " + file.getOriginalFilename() + "!" + e.getMessage();
@@ -62,6 +71,13 @@ public class uploadController {
                     .toUriString();
 
             return new responseFile(
+                    dbFile.getId(),
+                    dbFile.getBANK_CODE(),
+                    dbFile.getCIF(),
+                    dbFile.getSTATUS(),
+                    dbFile.getREG_BRN(),
+                    dbFile.getREG_DATE(),
+                    dbFile.getREG_TELR(),
                     dbFile.getIMG_NAME(),
                     fileDownloadUri,
                     dbFile.getIMG_TYPE(),
