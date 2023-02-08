@@ -12,12 +12,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.RowMapper;
 import com.restfullapi.jwt.models.pic.myPicture;
 
 public class downloadMapper implements RowMapper<myPicture> {
   int a = 0;
   Date date = new Date(System.currentTimeMillis());
+
+  private final static String EXTERNAL_FILE_PATH = "C:/fileDownloadExample/";
 
   @Override
   public myPicture mapRow(ResultSet rs, int index) throws SQLException {
@@ -29,7 +32,7 @@ public class downloadMapper implements RowMapper<myPicture> {
       try {
         BufferedImage image = ImageIO.read(is);
 
-        File outputfile = new File(date.toString() + a + ".png");
+        File outputfile = new File(EXTERNAL_FILE_PATH + rs.getString("pic_id").toString() + a + ".png");
         ImageIO.write(image, "png", outputfile);
         ImageIO.read(new File("saved.png"));
       } catch (IOException e) {
