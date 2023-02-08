@@ -1,5 +1,6 @@
 package com.restfullapi.jwt.models.pic;
 
+import java.io.InputStream;
 import java.sql.Blob;
 
 import javax.persistence.Entity;

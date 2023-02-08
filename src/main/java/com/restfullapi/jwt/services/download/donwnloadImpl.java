@@ -4,23 +4,20 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Repository;
 
 import com.restfullapi.jwt.models.pic.myPicture;
 
 @Repository
-public class donwnloadImpl implements downloadFile {
+public class donwnloadImpl<T> implements downloadFile {
 
     @Autowired
     private JdbcTemplate service;
 
-    String sql;
-
     @Override
     public List<myPicture> findAlls() {
-        sql = "SELECT * FROM user_pic";
-
-        return service.query(sql, new downloadMapper());
+        return service.query("SELECT * FROM get_Pic", new downloadMapper());
     }
 
     @Override
