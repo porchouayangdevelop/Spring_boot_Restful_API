@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.restfullapi.jwt.models.customer.customer;
 import com.restfullapi.jwt.models.uploads.responseMsg;
 import com.restfullapi.jwt.services.customer.customerService;
 
@@ -28,10 +27,6 @@ public class customerController {
     private customerService service;
 
     private Logger log = LoggerFactory.getLogger(customerController.class);
-
-    // public customerController(customerService service) {
-    // this.service = service;
-    // }
 
     @RequestMapping(value = "/create-customer", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     ResponseEntity<responseMsg> save(@RequestParam("id") String id, @RequestParam("firstName") String firstName,
