@@ -30,7 +30,8 @@ public class userPicController {
         byte[] image = null;
 
         if (pic.isPresent()) {
-            image = pic.get().getPicture().getBytes(1, (int) pic.get().getPicture().length());
+            // image = pic.get().getPicture().getBytes(1, (int)
+            // pic.get().getPicture().length());
         }
 
         return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(image);

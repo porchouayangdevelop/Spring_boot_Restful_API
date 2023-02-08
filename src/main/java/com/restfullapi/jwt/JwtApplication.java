@@ -39,36 +39,37 @@ public class JwtApplication {
 
     String sql = "SELECT picture FROM user_pic";
 
-    try (Connection con = DriverManager.getConnection(url, username, password);
-        PreparedStatement ps = con.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery()) {
-      int a = 0;
+    // try (Connection con = DriverManager.getConnection(url, username, password);
+    // PreparedStatement ps = con.prepareStatement(sql);
+    // ResultSet rs = ps.executeQuery()) {
+    // int a = 0;
 
-      while (rs.next()) {
-        a++;
-        Blob aBlob = rs.getBlob("picture");
-        // byte[] bytes = aBlob.getBytes(1, (int) aBlob.length());
-        InputStream is = aBlob.getBinaryStream(1, aBlob.length());
-        BufferedImage image = ImageIO.read(is);
+    // while (rs.next()) {
+    // a++;
+    // Blob aBlob = rs.getBlob("picture");
+    // // byte[] bytes = aBlob.getBytes(1, (int) aBlob.length());
+    // InputStream is = aBlob.getBinaryStream(1, aBlob.length());
+    // BufferedImage image = ImageIO.read(is);
 
-        try {
-          Date date = new Date(System.currentTimeMillis());
+    // try {
+    // Date date = new Date(System.currentTimeMillis());
 
-          // Retrieve Image
-          File outputfile = new File(date.toString() + a + ".png");
-          ImageIO.write(image, "png", outputfile); // Write the Buffered Image into an output file
-          ImageIO.read(new File(fileName + "saved.png")); // Opening again as an Image
+    // // Retrieve Image
+    // File outputfile = new File(date.toString() + a + ".png");
+    // ImageIO.write(image, "png", outputfile); // Write the Buffered Image into an
 
-        } catch (IOException e) {
+    // ImageIO.read(new File(fileName + "saved.png")); // Opening again as an Image
 
-        }
+    // } catch (IOException e) {
 
-      }
+    // }
 
-    } catch (SQLException e) {
-      Logger lgr = Logger.getLogger(JwtApplication.class.getName());
-      lgr.log(Level.SEVERE, e.getMessage(), e);
-    }
+    // }
+
+    // } catch (SQLException e) {
+    // Logger lgr = Logger.getLogger(JwtApplication.class.getName());
+    // lgr.log(Level.SEVERE, e.getMessage(), e);
+    // }
 
   }
 
